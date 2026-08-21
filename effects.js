@@ -31,7 +31,7 @@ document.body.appendChild(floating);
 document.addEventListener("mousemove", (e) => {
 
     // 너무 많이 생성되지 않게 확률 적용
-    if (Math.random() > 0.35) return;
+    if (Math.random() > 0.10) return;
 
     const particle = document.createElement("span");
 
