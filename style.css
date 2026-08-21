@@ -703,3 +703,79 @@ footer {
     height: 75px;
   }
 }
+/* ========================================
+   BGM Control
+   ======================================== */
+
+#bgm-player {
+  position: fixed;
+  width: 1px;
+  height: 1px;
+
+  left: -10px;
+  top: -10px;
+
+  opacity: 0;
+  pointer-events: none;
+}
+
+#bgm-control {
+  position: fixed;
+
+  right: 20px;
+  bottom: 20px;
+
+  z-index: 10000;
+
+  padding: 8px 13px;
+
+  border: 1px solid rgba(235, 0, 189, 0.45);
+  border-radius: 20px;
+
+  background: rgba(12, 9, 18, 0.85);
+
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+
+  cursor: pointer;
+
+  backdrop-filter: blur(8px);
+
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+#bgm-control:hover,
+#bgm-control.playing {
+  color: #EB00BD;
+
+  border-color: #EB00BD;
+
+  box-shadow:
+    0 0 12px rgba(235, 0, 189, 0.25);
+}
+
+#bgm-control span {
+  margin-left: 4px;
+}
+
+
+/* 모바일 */
+
+@media (max-width: 700px) {
+
+  #bgm-control {
+    right: 10px;
+    bottom: 10px;
+
+    padding: 7px 10px;
+
+    font-size: 10px;
+  }
+
+}
