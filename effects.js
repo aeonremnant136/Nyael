@@ -86,10 +86,8 @@ document.addEventListener("mousemove", (e) => {
 
     particle.className = "star-particle";
 
-    // 별가루 크기
     const size = Math.random() * 3 + 2;
 
-    // 별가루 색상
     const colors = [
         "#EB00BD",
         "#8B00FF",
@@ -122,37 +120,127 @@ document.addEventListener("mousemove", (e) => {
 
     document.body.appendChild(particle);
 
-    // 1.2초 후 제거
     setTimeout(() => {
         particle.remove();
     }, 1200);
 });
 
+
 // ========================================
 // YouTube BGM
+// Playlist: PLM01DG1JIGvw
 // ========================================
 
-let bgmPlayer;
+let bgmPlayer = null;
+let bgmReady = false;
+let bgmPlaying = false;
 
+
+// YouTube API가 준비되면 실행
 function onYouTubeIframeAPIReady() {
+
     bgmPlayer = new YT.Player("bgm-player", {
+
         width: "1",
         height: "1",
 
         playerVars: {
             listType: "playlist",
             list: "PLM01DG1JIGvw",
-            autoplay: 1,
-            loop: 1,
-            controls: 0,
-            playsinline: 1
+            playsinline: 1,
+            controls: 0
         },
 
         events: {
+
             onReady: function(event) {
+
+                bgmReady = true;
+
                 event.target.setVolume(35);
-                event.target.playVideo();
+
+                createBgmButton();
+            },
+
+            onStateChange: function(event) {
+
+                if (event.data === YT.PlayerState.PLAYING) {
+                    bgmPlaying = true;
+                    updateBgmButton();
+                }
+
+                if (event.data === YT.PlayerState.PAUSED) {
+                    bgmPlaying = false;
+                    updateBgmButton();
+                }
+
+                // 곡이 끝나면 다음 곡으로
+                if (event.data === YT.PlayerState.ENDED) {
+                    event.target.nextVideo();
+                }
             }
         }
     });
+}
+
+
+// ========================================
+// BGM 버튼
+// ========================================
+
+function createBgmButton() {
+
+    if (document.getElementById("bgm-control")) {
+        return;
+    }
+
+    const button = document.createElement("button");
+
+    button.id = "bgm-control";
+    button.type = "button";
+    button.innerHTML = "♫ <span>PLAY</span>";
+
+    button.addEventListener("click", function() {
+
+        if (!bgmPlayer || !bgmReady) {
+            return;
+        }
+
+        if (bgmPlaying) {
+
+            bgmPlayer.pauseVideo();
+
+        } else {
+
+            bgmPlayer.playVideo();
+
+        }
+
+    });
+
+    document.body.appendChild(button);
+
+    updateBgmButton();
+}
+
+
+function updateBgmButton() {
+
+    const button = document.getElementById("bgm-control");
+
+    if (!button) return;
+
+    if (bgmPlaying) {
+
+        button.innerHTML = "♫ <span>PAUSE</span>";
+
+        button.classList.add("playing");
+
+    } else {
+
+        button.innerHTML = "♫ <span>PLAY</span>";
+
+        button.classList.remove("playing");
+
+    }
 }
