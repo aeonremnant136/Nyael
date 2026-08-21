@@ -1,34 +1,6 @@
-// ==============================
-// Nyael site effects
-// ==============================
-
-// 마우스를 따라 떨어지는 별가루
-document.addEventListener("mousemove", (e) => {
-    const particle = document.createElement("span");
-
-    particle.className = "star-particle";
-
-    const size = Math.random() * 4 + 2;
-    const colors = ["#EB00BD", "#8B00FF", "#ffffff"];
-    const color = colors[Math.floor(Math.random() * colors.length)];
-
-    particle.style.left = e.clientX + "px";
-    particle.style.top = e.clientY + "px";
-    particle.style.width = size + "px";
-    particle.style.height = size + "px";
-    particle.style.background = color;
-
-    document.body.appendChild(particle);
-
-    setTimeout(() => {
-        particle.remove();
-    }, 900);
-});
-
-
-// ==============================
-// 오른쪽 아래 플로팅 이미지
-// ==============================
+// ========================================
+// Nyael floating character
+// ========================================
 
 const floating = document.createElement("div");
 
@@ -43,7 +15,41 @@ floating.innerHTML = `
         <b>Nyaryu</b> 기꺼이.
     </div>
 
-    <img src="1.png" alt="Nyael">
+    <div class="floating-characters">
+        <img src="1.png" alt="Noel">
+        <img src="2.png" alt="Nyaryu">
+    </div>
 `;
 
 document.body.appendChild(floating);
+
+
+// ========================================
+// 마우스 별가루
+// ========================================
+
+document.addEventListener("mousemove", (e) => {
+
+    // 너무 많이 생성되지 않게 확률 적용
+    if (Math.random() > 0.35) return;
+
+    const particle = document.createElement("span");
+
+    particle.className = "star-particle";
+
+    const size = Math.random() * 4 + 2;
+    const colors = ["#EB00BD", "#8B00FF", "#ffffff"];
+
+    particle.style.left = e.clientX + "px";
+    particle.style.top = e.clientY + "px";
+    particle.style.width = size + "px";
+    particle.style.height = size + "px";
+    particle.style.background =
+        colors[Math.floor(Math.random() * colors.length)];
+
+    document.body.appendChild(particle);
+
+    setTimeout(() => {
+        particle.remove();
+    }, 900);
+});
