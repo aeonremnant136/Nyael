@@ -535,383 +535,171 @@ footer {
   position: fixed;
   z-index: 9999;
   pointer-events: none;
-
-  background: var(--sparkle-color);
-  border-radius: 50%;
-
-  box-shadow:
-    0 0 6px var(--sparkle-color),
-    0 0 12px var(--sparkle-color);
-
-  transform: translate(-50%, -50%);
-  animation: sparkle-fade 0.7s ease-out forwards;
-}
-
-@keyframes sparkle-fade {
-  0% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
-
-  60% {
-    opacity: 0.8;
-  }
-
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -75%) scale(0);
-  }
-}
-
-
-/* ========================================
-   Floating Nyael Widget
-======================================== */
-
-.nyael-widget {
-  position: fixed;
-  right: 28px;
-  bottom: 24px;
-
-  width: 250px;
-
-  z-index: 5000;
-
-  transition:
-    opacity 0.3s ease,
-    transform 0.3s ease;
-}
-
-.nyael-widget.is-hidden {
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(20px);
-}
-
-
-/* speech bubble */
-
-.widget-bubble {
-  position: relative;
-
-  margin-bottom: -4px;
-  padding: 14px 16px;
-
-  background: #ffffff;
-  color: #1a111c;
-
-  border-radius: 17px;
-
-  font-size: 12px;
-  line-height: 1.55;
-
-  box-shadow:
-    0 8px 30px rgba(0, 0, 0, 0.35);
-}
-
-.widget-bubble::after {
-  content: "";
-
-  position: absolute;
-
-  right: 25px;
-  bottom: -11px;
-
-  width: 0;
-  height: 0;
-
-  border-left: 12px solid transparent;
-  border-right: 12px solid transparent;
-  border-top: 13px solid #ffffff;
-}
-
-.widget-bubble .widget-title {
-  color: #8B00FF;
-  font-weight: 700;
-}
-
-.widget-bubble .widget-noel {
-  color: #EB00BD;
-  font-weight: 700;
-}
-
-.widget-bubble .widget-nyaryu {
-  color: #8B00FF;
-  font-weight: 700;
-}
-
-
-/* characters */
-
-.widget-characters {
-  display: flex;
-
-  justify-content: flex-end;
-
-  gap: 5px;
-
-  padding-right: 4px;
-}
-
-.widget-character {
-  width: 94px;
-  height: 94px;
-
-  overflow: hidden;
-
-  border-radius: 50%;
-
-  border: 2px solid rgba(235, 0, 189, 0.25);
-
-  background:
-    radial-gradient(
-      circle at 50% 30%,
-      #5b5261 0%,
-      #29242d 45%,
-      #111014 100%
-    );
-
-  box-shadow:
-    0 8px 25px rgba(0, 0, 0, 0.45);
-}
-
-.widget-character img {
-  display: block;
-
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-}
-
-
-/* close button */
-
-.widget-close {
-  position: absolute;
-
-  top: 78px;
-  left: -8px;
-
-  width: 22px;
-  height: 22px;
-
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 50%;
-
-  background: #17141b;
-  color: #aaa;
-
-  font-size: 12px;
-
-  cursor: pointer;
-
-  z-index: 2;
-}
-
-.widget-close:hover {
-  color: #ffffff;
-
-  border-color: #EB00BD;
-}
 /* ========================================
    Mouse Star Particles
    ======================================== */
 
 .star-particle {
-    position: fixed;
-    z-index: 9999;
-    pointer-events: none;
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
 
-    border-radius: 50%;
+  border-radius: 50%;
 
-    box-shadow:
-        0 0 6px currentColor,
-        0 0 12px currentColor;
+  box-shadow:
+    0 0 5px currentColor,
+    0 0 10px currentColor;
 
-    animation: star-fall 0.9s ease-out forwards;
+  animation: star-fall 1.2s ease-out forwards;
 }
 
 @keyframes star-fall {
+  0% {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(1);
+  }
 
-    0% {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
-    }
+  25% {
+    opacity: 0.8;
+  }
 
-    40% {
-        opacity: 0.9;
-    }
-
-    100% {
-        opacity: 0;
-        transform:
-            translate(-50%, calc(-50% + 35px))
-            scale(0);
-    }
+  100% {
+    opacity: 0;
+    transform:
+      translate(var(--fall-x), var(--fall-y))
+      scale(0.2);
+  }
 }
 
 
 /* ========================================
-   Floating Character
+   Floating Nyael Character
    ======================================== */
 
 .floating-character {
-    position: fixed;
+  position: fixed;
+  right: 25px;
+  bottom: 20px;
 
-    right: 25px;
-    bottom: 20px;
+  z-index: 9998;
 
-    z-index: 9998;
+  width: 250px;
 
-    width: 250px;
+  pointer-events: none;
 
-    pointer-events: none;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 
-/* ========================================
-   말풍선
-   ======================================== */
+/* 말풍선 */
 
 .floating-message {
-    position: relative;
+  position: relative;
 
-    width: 220px;
+  width: 220px;
 
-    box-sizing: border-box;
+  padding: 12px 15px;
+  margin-bottom: 10px;
 
-    padding: 12px 15px;
+  background: #ffffff;
+  color: #55515d;
 
-    margin-bottom: 10px;
+  border-radius: 16px;
 
-    background: #ffffff;
-    color: #55515d;
+  font-size: 12px;
+  line-height: 1.55;
 
-    border-radius: 16px;
-
-    font-size: 12px;
-    line-height: 1.55;
-
-    box-shadow:
-        0 8px 30px rgba(0, 0, 0, 0.4);
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.4);
 }
-
-
-/* 말풍선 꼬리 */
 
 .floating-message::after {
-    content: "";
+  content: "";
 
-    position: absolute;
+  position: absolute;
 
-    right: 25px;
-    bottom: -10px;
+  right: 25px;
+  bottom: -10px;
 
-    width: 0;
-    height: 0;
+  width: 0;
+  height: 0;
 
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-top: 11px solid #ffffff;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 11px solid #ffffff;
 }
 
-
-/* 이름 */
-
 .floating-message b {
-    color: #EB00BD;
+  color: #EB00BD;
 }
 
 .floating-message strong {
-    color: #8B00FF;
+  color: #8B00FF;
 }
 
 
-/* ========================================
-   두 캐릭터
-   ======================================== */
+/* 두 캐릭터 */
 
 .floating-characters {
-    display: flex;
+  display: flex;
 
-    align-items: flex-end;
-    justify-content: center;
+  align-items: flex-end;
+  justify-content: center;
 
-    gap: 0;
+  gap: 0;
 }
-
-
-/* 캐릭터 이미지 */
 
 .floating-characters img {
-    display: block;
+  display: block;
 
-    width: 112px;
-    height: 112px;
+  width: 112px;
+  height: 112px;
 
-    object-fit: contain;
+  object-fit: contain;
 
-    filter:
-        drop-shadow(0 7px 10px rgba(0, 0, 0, 0.45));
+  filter:
+    drop-shadow(0 7px 10px rgba(0, 0, 0, 0.45));
 
-    animation: character-bob 3s ease-in-out infinite;
+  animation: character-bob 3s ease-in-out infinite;
 }
-
-
-/* 두 캐릭터가 서로 다른 타이밍으로 움직이게 */
 
 .floating-characters img:nth-child(2) {
-    animation-delay: -1.5s;
+  animation-delay: -1.5s;
 }
 
-
-/* 둥실둥실 */
-
 @keyframes character-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
 
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-5px);
-    }
+  50% {
+    transform: translateY(-5px);
+  }
 }
 
 
 /* ========================================
-   모바일
+   Mobile
    ======================================== */
 
 @media (max-width: 700px) {
+  .floating-character {
+    right: 8px;
+    bottom: 8px;
+    width: 170px;
+  }
 
-    .floating-character {
-        right: 8px;
-        bottom: 8px;
+  .floating-message {
+    width: 155px;
+    padding: 9px 10px;
+    font-size: 10px;
+  }
 
-        width: 170px;
-    }
-
-    .floating-message {
-        width: 155px;
-
-        padding: 9px 10px;
-
-        font-size: 10px;
-    }
-
-    .floating-characters img {
-        width: 75px;
-        height: 75px;
-    }
-}
-/* 기존 플로팅 위젯 숨김 */
-.nyael-widget {
-    display: none !important;
+  .floating-characters img {
+    width: 75px;
+    height: 75px;
+  }
 }
