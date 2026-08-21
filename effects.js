@@ -1,286 +1,394 @@
 // ========================================
-// Nyael — Floating Character
+// Nyael Effects
 // ========================================
-
-const floating = document.createElement("div");
-
-floating.className = "floating-character";
-
-floating.innerHTML = `
-  <div class="floating-message">
-    <strong>🩷💜 · <span id="dday">D+0</span></strong>
-    <br>
-    <b>Noel</b> 용서해. 너 또한 그랬잖아.
-    <br>
-    <b>Nyaryu</b> 기꺼이.
-  </div>
-
-  <div class="floating-characters">
-    <img src="1.png" alt="Noel">
-    <img src="2.png" alt="Nyaryu">
-  </div>
-`;
-
-document.body.appendChild(floating);
 
 
 // ========================================
-// D-day
-// 2026.08.13 = D+0
+// D-Day
+// 기준일: 2026년 8월 13일 = D+0
 // ========================================
 
-const startDate = new Date("2026-08-13T00:00:00");
+function getDdayText() {
+  const startDate = new Date(2026, 7, 13);
 
-function updateDday() {
   const today = new Date();
 
-  const start = new Date(
-    startDate.getFullYear(),
-    startDate.getMonth(),
-    startDate.getDate()
-  );
+  startDate.setHours(0, 0, 0, 0);
+  today.setHours(0, 0, 0, 0);
 
-  const current = new Date(
-    today.getFullYear(),
-    today.getMonth(),
-    today.getDate()
-  );
+  const diff =
+    Math.floor(
+      (today - startDate) / (1000 * 60 * 60 * 24)
+    );
 
-  const diff = Math.floor(
-    (current - start) / (1000 * 60 * 60 * 24)
-  );
-
-  const dday = document.getElementById("dday");
-
-  if (!dday) return;
-
-  if (diff >= 0) {
-    dday.textContent = `D+${diff}`;
-  } else {
-    dday.textContent = `D${diff}`;
+  if (diff < 0) {
+    return `D-${Math.abs(diff)}`;
   }
+
+  return `D+${diff}`;
 }
 
-updateDday();
+
+function getRemainingText() {
+  const startDate = new Date(2026, 7, 13);
+  const targetDate = new Date(startDate);
+
+  targetDate.setDate(
+    targetDate.getDate() + 50
+  );
+
+  const today = new Date();
+
+  startDate.setHours(0, 0, 0, 0);
+  targetDate.setHours(0, 0, 0, 0);
+  today.setHours(0, 0, 0, 0);
+
+  const diff =
+    Math.ceil(
+      (targetDate - today) /
+      (1000 * 60 * 60 * 24)
+    );
+
+  if (diff > 0) {
+    return `50일까지 ${diff}일`;
+  }
+
+  if (diff === 0) {
+    return "D+50";
+  }
+
+  return "D+50";
+}
 
 
 // ========================================
-// Mouse Star Particles
-// 드문드문 떨어지는 별가루
+// Floating Character
+// ========================================
+
+function createFloatingCharacter() {
+
+  // 기존 플로팅이 있다면 제거
+  const old = document.querySelector(".nyael-floating");
+
+  if (old) {
+    old.remove();
+  }
+
+  const floating =
+    document.createElement("div");
+
+  floating.className = "nyael-floating";
+
+  floating.innerHTML = `
+    <div class="nyael-floating-bubble">
+
+      <span class="nyael-dday">
+        💗 💜 · ${getRemainingText()}
+      </span>
+
+      <div>
+        <span class="nyael-noel">Noel</span>
+        용서해. 너 또한 그랬잖아.
+      </div>
+
+      <div>
+        <span class="nyael-nyaryu">Nyaryu</span>
+        기꺼이.
+      </div>
+
+    </div>
+
+    <div class="nyael-floating-characters">
+
+      <img src="1.png" alt="Noel">
+
+      <img src="2.png" alt="Nyaryu">
+
+    </div>
+
+    <button
+      class="nyael-floating-close"
+      type="button"
+      aria-label="플로팅 닫기"
+    >
+      ×
+    </button>
+  `;
+
+  document.body.appendChild(floating);
+
+
+  // 닫기
+  const closeButton =
+    floating.querySelector(
+      ".nyael-floating-close"
+    );
+
+  closeButton.addEventListener(
+    "click",
+    () => {
+      floating.remove();
+    }
+  );
+}
+
+
+// ========================================
+// 마우스 별가루
+//
+// 마우스를 따라다니지 않고
+// 일정 확률로 한두 개씩 생성되어
+// 살짝 아래로 떨어짐
 // ========================================
 
 let lastParticleTime = 0;
 
-document.addEventListener("mousemove", (e) => {
+document.addEventListener(
+  "mousemove",
+  (event) => {
 
-  const now = Date.now();
+    const now = Date.now();
 
-  // 최소 생성 간격
-  if (now - lastParticleTime < 260) return;
+    // 최소 생성 간격
+    if (now - lastParticleTime < 110) {
+      return;
+    }
 
-  // 생성 확률
-  if (Math.random() > 0.28) return;
+    // 생성 확률
+    if (Math.random() > 0.18) {
+      return;
+    }
 
-  lastParticleTime = now;
+    lastParticleTime = now;
 
-  const particle = document.createElement("span");
+    const particle =
+      document.createElement("span");
 
-  particle.className = "star-particle";
+    particle.className =
+      "star-particle";
 
-  const size = Math.random() * 3 + 2;
+    const size =
+      Math.random() * 3 + 2;
 
-  const colors = [
-    "#EB00BD",
-    "#8B00FF",
-    "#ffffff"
-  ];
+    const colors = [
+      "#EB00BD",
+      "#8B00FF",
+      "#FFFFFF"
+    ];
 
-  particle.style.left =
-    `${e.clientX + (Math.random() * 14 - 7)}px`;
+    const color =
+      colors[
+        Math.floor(
+          Math.random() * colors.length
+        )
+      ];
 
-  particle.style.top =
-    `${e.clientY + (Math.random() * 10 - 5)}px`;
+    particle.style.left =
+      `${event.clientX}px`;
 
-  particle.style.width = `${size}px`;
-  particle.style.height = `${size}px`;
+    particle.style.top =
+      `${event.clientY}px`;
 
-  particle.style.background =
-    colors[Math.floor(Math.random() * colors.length)];
+    particle.style.width =
+      `${size}px`;
 
-  particle.style.setProperty(
-    "--fall-x",
-    `${Math.random() * 28 - 14}px`
-  );
+    particle.style.height =
+      `${size}px`;
 
-  particle.style.setProperty(
-    "--fall-y",
-    `${Math.random() * 45 + 30}px`
-  );
+    particle.style.background =
+      color;
 
-  document.body.appendChild(particle);
+    particle.style.color =
+      color;
 
-  setTimeout(() => {
-    particle.remove();
-  }, 1400);
-});
+    particle.style.setProperty(
+      "--drift",
+      Math.round(
+        Math.random() * 50 - 25
+      )
+    );
+
+    document.body.appendChild(
+      particle
+    );
+
+    setTimeout(
+      () => particle.remove(),
+      1900
+    );
+  }
+);
 
 
 // ========================================
-// YouTube BGM
-// Playlist: PLM01DG1JIGvw
+// YouTube Playlist
 // ========================================
 
-let bgmPlayer = null;
-let bgmReady = false;
-let bgmPlaying = false;
+const YOUTUBE_PLAYLIST =
+  "PLM01DG1JIGvw";
+
+let youtubePlayer = null;
 
 
 // YouTube API 로드
 function loadYouTubeAPI() {
 
-  if (window.YT && window.YT.Player) {
-    createYouTubePlayer();
+  if (
+    document.getElementById(
+      "youtube-iframe-api"
+    )
+  ) {
     return;
   }
 
-  const tag = document.createElement("script");
+  const script =
+    document.createElement("script");
 
-  tag.src = "https://www.youtube.com/iframe_api";
+  script.id =
+    "youtube-iframe-api";
 
-  document.head.appendChild(tag);
+  script.src =
+    "https://www.youtube.com/iframe_api";
 
-  window.onYouTubeIframeAPIReady = function () {
-    createYouTubePlayer();
-  };
+  document.head.appendChild(script);
 }
 
 
-// YouTube 플레이어 생성
-function createYouTubePlayer() {
+// API 준비 후 호출
+window.onYouTubeIframeAPIReady =
+  function () {
 
-  if (bgmPlayer) return;
+    const container =
+      document.createElement("div");
 
-  const container = document.getElementById("bgm-player");
+    container.id =
+      "nyael-youtube";
 
-  if (!container) return;
+    document.body.appendChild(
+      container
+    );
 
-  bgmPlayer = new YT.Player("bgm-player", {
+    youtubePlayer =
+      new YT.Player(
+        "nyael-youtube",
+        {
+          width: "1",
+          height: "1",
 
-    width: "1",
-    height: "1",
+          playerVars: {
+            listType: "playlist",
+            list: YOUTUBE_PLAYLIST,
 
-    playerVars: {
-      listType: "playlist",
-      list: "PLM01DG1JIGvw",
-      playsinline: 1,
-      controls: 0,
-      rel: 0
-    },
+            autoplay: 1,
+            loop: 1,
 
-    events: {
+            controls: 0,
+            rel: 0,
 
-      onReady: function (event) {
+            playsinline: 1
+          },
 
-        bgmReady = true;
+          events: {
 
-        event.target.setVolume(35);
+            onReady: function (event) {
 
-        createBgmButton();
-      },
+              // 브라우저 자동재생 정책상
+              // 처음에는 음소거로 시도
+              event.target.mute();
 
-      onStateChange: function (event) {
+              event.target.playVideo();
 
-        if (event.data === YT.PlayerState.PLAYING) {
+            },
 
-          bgmPlaying = true;
+            onStateChange:
+              function (event) {
 
-          updateBgmButton();
+                // 재생목록 마지막에서 다시 처음으로
+                if (
+                  event.data ===
+                  YT.PlayerState.ENDED
+                ) {
+                  event.target.playVideo();
+                }
+
+              }
+          }
         }
-
-        if (event.data === YT.PlayerState.PAUSED) {
-
-          bgmPlaying = false;
-
-          updateBgmButton();
-        }
-
-        if (event.data === YT.PlayerState.ENDED) {
-
-          event.target.nextVideo();
-        }
-      }
-    }
-  });
-}
+      );
+    };
 
 
 // ========================================
-// BGM Button
+// 첫 사용자 입력 후 소리 켜기
 // ========================================
 
-function createBgmButton() {
+function enableSound() {
 
-  if (document.getElementById("bgm-control")) {
+  if (!youtubePlayer) {
     return;
   }
 
-  const button = document.createElement("button");
+  try {
 
-  button.id = "bgm-control";
-  button.type = "button";
+    youtubePlayer.unMute();
 
-  button.innerHTML = "♫ <span>PLAY</span>";
+    youtubePlayer.setVolume(35);
 
-  button.addEventListener("click", function () {
+    youtubePlayer.playVideo();
 
-    if (!bgmPlayer || !bgmReady) {
-      return;
-    }
+  } catch (error) {
 
-    if (bgmPlaying) {
+    console.log(
+      "YouTube audio could not start.",
+      error
+    );
 
-      bgmPlayer.pauseVideo();
-
-    } else {
-
-      bgmPlayer.playVideo();
-
-    }
-  });
-
-  document.body.appendChild(button);
-
-  updateBgmButton();
-}
-
-
-// ========================================
-// BGM Button State
-// ========================================
-
-function updateBgmButton() {
-
-  const button = document.getElementById("bgm-control");
-
-  if (!button) return;
-
-  if (bgmPlaying) {
-
-    button.innerHTML = "♫ <span>PAUSE</span>";
-
-    button.classList.add("playing");
-
-  } else {
-
-    button.innerHTML = "♫ <span>PLAY</span>";
-
-    button.classList.remove("playing");
   }
+
+  document.removeEventListener(
+    "click",
+    enableSound
+  );
+
+  document.removeEventListener(
+    "touchstart",
+    enableSound
+  );
+
+  document.removeEventListener(
+    "keydown",
+    enableSound
+  );
 }
 
 
+document.addEventListener(
+  "click",
+  enableSound
+);
+
+document.addEventListener(
+  "touchstart",
+  enableSound
+);
+
+document.addEventListener(
+  "keydown",
+  enableSound
+);
+
+
 // ========================================
-// Start
+// 시작
 // ========================================
 
-loadYouTubeAPI();
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    createFloatingCharacter();
+
+    loadYouTubeAPI();
+
+  }
+);
