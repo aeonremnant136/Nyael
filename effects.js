@@ -8,7 +8,7 @@ floating.className = "floating-character";
 
 floating.innerHTML = `
     <div class="floating-message">
-<strong>💗 💜 · <span id="dday">D-?</span></strong>
+<strong>🩷💜 · <span id="dday">D+0</span></strong>
         <br>
         <b>Noel</b> 용서해. 너 또한 그랬잖아.
         <br>
@@ -56,40 +56,38 @@ document.addEventListener("mousemove", (e) => {
 
 // ========================================
 // D-day
+// 2026.08.13 = D+0
 // ========================================
 
-const targetDate = new Date("2026-10-02T00:00:00");
+const startDate = new Date("2026-08-13T00:00:00");
 
 function updateDday() {
-    const now = new Date();
+    const today = new Date();
 
-    // 날짜만 비교
-    const today = new Date(
-        now.getFullYear(),
-        now.getMonth(),
-        now.getDate()
+    const start = new Date(
+        startDate.getFullYear(),
+        startDate.getMonth(),
+        startDate.getDate()
     );
 
-    const target = new Date(
-        targetDate.getFullYear(),
-        targetDate.getMonth(),
-        targetDate.getDate()
+    const current = new Date(
+        today.getFullYear(),
+        today.getMonth(),
+        today.getDate()
     );
 
-    const diff = Math.ceil(
-        (target - today) / (1000 * 60 * 60 * 24)
+    const diff = Math.floor(
+        (current - start) / (1000 * 60 * 60 * 24)
     );
 
     const dday = document.getElementById("dday");
 
     if (!dday) return;
 
-    if (diff > 0) {
-        dday.textContent = `D-${diff}`;
-    } else if (diff === 0) {
-        dday.textContent = "D-DAY";
+    if (diff >= 0) {
+        dday.textContent = `D+${diff}`;
     } else {
-        dday.textContent = `D+${Math.abs(diff)}`;
+        dday.textContent = `D${diff}`;
     }
 }
 
