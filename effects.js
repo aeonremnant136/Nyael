@@ -8,7 +8,7 @@ floating.className = "floating-character";
 
 floating.innerHTML = `
     <div class="floating-message">
-<strong>🩷💜 · <span id="dday">D+0</span></strong>
+        <strong>🩷💜 · <span id="dday">D+0</span></strong>
         <br>
         <b>Noel</b> 용서해. 너 또한 그랬잖아.
         <br>
@@ -23,36 +23,6 @@ floating.innerHTML = `
 
 document.body.appendChild(floating);
 
-
-// ========================================
-// 마우스 별가루
-// ========================================
-
-document.addEventListener("mousemove", (e) => {
-
-    // 너무 많이 생성되지 않게 확률 적용
-    if (Math.random() > 0.10) return;
-
-    const particle = document.createElement("span");
-
-    particle.className = "star-particle";
-
-    const size = Math.random() * 4 + 2;
-    const colors = ["#EB00BD", "#8B00FF", "#ffffff"];
-
-    particle.style.left = e.clientX + "px";
-    particle.style.top = e.clientY + "px";
-    particle.style.width = size + "px";
-    particle.style.height = size + "px";
-    particle.style.background =
-        colors[Math.floor(Math.random() * colors.length)];
-
-    document.body.appendChild(particle);
-
-    setTimeout(() => {
-        particle.remove();
-    }, 900);
-});
 
 // ========================================
 // D-day
@@ -92,3 +62,68 @@ function updateDday() {
 }
 
 updateDday();
+
+
+// ========================================
+// 마우스 별가루
+// ========================================
+
+let lastSparkleTime = 0;
+
+document.addEventListener("mousemove", (e) => {
+
+    const now = Date.now();
+
+    // 생성 간격
+    if (now - lastSparkleTime < 120) return;
+
+    // 생성 확률
+    if (Math.random() > 0.45) return;
+
+    lastSparkleTime = now;
+
+    const particle = document.createElement("span");
+
+    particle.className = "star-particle";
+
+    // 별가루 크기
+    const size = Math.random() * 3 + 2;
+
+    // 별가루 색상
+    const colors = [
+        "#EB00BD",
+        "#8B00FF",
+        "#ffffff"
+    ];
+
+    // 커서 위치에서 약간 랜덤하게 생성
+    particle.style.left =
+        e.clientX + (Math.random() * 16 - 8) + "px";
+
+    particle.style.top =
+        e.clientY + (Math.random() * 10 - 5) + "px";
+
+    particle.style.width = size + "px";
+    particle.style.height = size + "px";
+
+    particle.style.background =
+        colors[Math.floor(Math.random() * colors.length)];
+
+    // 떨어지는 방향
+    particle.style.setProperty(
+        "--fall-x",
+        (Math.random() * 30 - 15) + "px"
+    );
+
+    particle.style.setProperty(
+        "--fall-y",
+        (Math.random() * 35 + 25) + "px"
+    );
+
+    document.body.appendChild(particle);
+
+    // 1.2초 후 제거
+    setTimeout(() => {
+        particle.remove();
+    }, 1200);
+});
