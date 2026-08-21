@@ -74,10 +74,10 @@ document.addEventListener("mousemove", (e) => {
 
     const now = Date.now();
 
-    // 생성 간격
+    // 너무 촘촘하게 생성되지 않도록 최소 간격
     if (now - lastSparkleTime < 120) return;
 
-    // 생성 확률
+    // 약 45% 확률로 생성
     if (Math.random() > 0.45) return;
 
     lastSparkleTime = now;
@@ -96,7 +96,7 @@ document.addEventListener("mousemove", (e) => {
         "#ffffff"
     ];
 
-    // 커서 위치에서 약간 랜덤하게 생성
+    // 커서 주변에서 약간 랜덤하게 생성
     particle.style.left =
         e.clientX + (Math.random() * 16 - 8) + "px";
 
