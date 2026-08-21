@@ -911,3 +911,7 @@ footer {
         height: 75px;
     }
 }
+/* 기존 플로팅 위젯 숨김 */
+.nyael-widget {
+    display: none !important;
+}
