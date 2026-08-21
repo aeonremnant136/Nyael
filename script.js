@@ -1,46 +1,37 @@
 // ========================================
-// Nyael — Mouse Sparkle Effect
+// Nyael — Basic Page Script
 // ========================================
 
-document.addEventListener("mousemove", function (e) {
-  const sparkle = document.createElement("span");
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
 
-  sparkle.className = "mouse-sparkle";
+    // 현재 페이지의 네비게이션 표시
+    const currentPage =
+      location.pathname
+        .split("/")
+        .pop();
 
-  const size = Math.random() * 5 + 3;
-  const offsetX = (Math.random() - 0.5) * 16;
-  const offsetY = (Math.random() - 0.5) * 16;
+    document
+      .querySelectorAll(
+        ".site-header nav a"
+      )
+      .forEach((link) => {
 
-  sparkle.style.width = `${size}px`;
-  sparkle.style.height = `${size}px`;
-  sparkle.style.left = `${e.clientX + offsetX}px`;
-  sparkle.style.top = `${e.clientY + offsetY}px`;
+        const href =
+          link
+            .getAttribute("href")
+            ?.split("/")
+            .pop();
 
-  sparkle.style.setProperty(
-    "--sparkle-color",
-    Math.random() > 0.5 ? "#EB00BD" : "#8B00FF"
-  );
+        if (
+          href === currentPage
+        ) {
+          link.style.color =
+            "#eb00bd";
+        }
 
-  document.body.appendChild(sparkle);
+      });
 
-  setTimeout(() => {
-    sparkle.remove();
-  }, 700);
-});
-
-
-// ========================================
-// Nyael — Floating Widget
-// ========================================
-
-const widget = document.querySelector(".nyael-widget");
-
-if (widget) {
-  const closeButton = widget.querySelector(".widget-close");
-
-  if (closeButton) {
-    closeButton.addEventListener("click", function () {
-      widget.classList.add("is-hidden");
-    });
   }
-}
+);
