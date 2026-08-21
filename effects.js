@@ -127,3 +127,32 @@ document.addEventListener("mousemove", (e) => {
         particle.remove();
     }, 1200);
 });
+
+// ========================================
+// YouTube BGM
+// ========================================
+
+let bgmPlayer;
+
+function onYouTubeIframeAPIReady() {
+    bgmPlayer = new YT.Player("bgm-player", {
+        width: "1",
+        height: "1",
+
+        playerVars: {
+            listType: "playlist",
+            list: "PLM01DG1JIGvw",
+            autoplay: 1,
+            loop: 1,
+            controls: 0,
+            playsinline: 1
+        },
+
+        events: {
+            onReady: function(event) {
+                event.target.setVolume(35);
+                event.target.playVideo();
+            }
+        }
+    });
+}
