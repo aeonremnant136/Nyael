@@ -25,6 +25,7 @@ html {
 
 body {
   margin: 0;
+
   background:
     radial-gradient(
       circle at 15% 0%,
@@ -39,15 +40,17 @@ body {
     var(--bg);
 
   color: var(--text);
+
   font-family: 'Noto Sans KR', sans-serif;
   line-height: 1.7;
 
   min-height: 100vh;
 }
 
-/* --------------------
+
+/* ========================================
    HEADER
--------------------- */
+======================================== */
 
 .site-header {
   width: min(1100px, calc(100% - 80px));
@@ -68,6 +71,7 @@ body {
 
   font-size: 22px;
   font-weight: 800;
+
   letter-spacing: -0.05em;
 
   transition: 0.3s;
@@ -88,6 +92,7 @@ nav a {
 
   font-size: 11px;
   font-weight: 700;
+
   letter-spacing: 0.14em;
 
   transition: 0.3s;
@@ -97,9 +102,10 @@ nav a:hover {
   color: var(--pink);
 }
 
-/* --------------------
+
+/* ========================================
    HERO
--------------------- */
+======================================== */
 
 .hero {
   position: relative;
@@ -141,6 +147,7 @@ nav a:hover {
 
   font-size: 12px;
   font-weight: 700;
+
   letter-spacing: 0.22em;
 }
 
@@ -149,6 +156,7 @@ nav a:hover {
 
   font-size: clamp(70px, 11vw, 150px);
   line-height: 0.9;
+
   letter-spacing: -0.07em;
 
   background: linear-gradient(
@@ -160,6 +168,7 @@ nav a:hover {
 
   -webkit-background-clip: text;
   background-clip: text;
+
   color: transparent;
 }
 
@@ -184,6 +193,7 @@ nav a:hover {
 
   font-size: 11px;
   font-weight: 700;
+
   letter-spacing: 0.14em;
 
   transition: 0.3s;
@@ -191,13 +201,15 @@ nav a:hover {
 
 .enter-button:hover {
   background: var(--pink);
+
   box-shadow:
     0 0 25px rgba(235, 0, 189, 0.3);
 }
 
-/* --------------------
+
+/* ========================================
    HOME CARDS
--------------------- */
+======================================== */
 
 .home-intro {
   width: min(1100px, calc(100% - 80px));
@@ -205,6 +217,7 @@ nav a:hover {
 
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+
   gap: 18px;
 }
 
@@ -239,6 +252,7 @@ nav a:hover {
 
   font-size: 10px;
   font-weight: 700;
+
   letter-spacing: 0.15em;
 }
 
@@ -262,6 +276,7 @@ nav a:hover {
 
   font-size: 10px;
   font-weight: 700;
+
   letter-spacing: 0.08em;
 }
 
@@ -269,9 +284,10 @@ nav a:hover {
   color: var(--pink);
 }
 
-/* --------------------
+
+/* ========================================
    SUB PAGES
--------------------- */
+======================================== */
 
 .page {
   width: min(1000px, calc(100% - 80px));
@@ -284,6 +300,7 @@ nav a:hover {
   margin: 0;
 
   font-size: clamp(50px, 8vw, 90px);
+
   letter-spacing: -0.07em;
 
   background: linear-gradient(
@@ -294,6 +311,7 @@ nav a:hover {
 
   -webkit-background-clip: text;
   background-clip: text;
+
   color: transparent;
 }
 
@@ -305,9 +323,10 @@ nav a:hover {
   font-size: 13px;
 }
 
-/* --------------------
+
+/* ========================================
    CONTENT
--------------------- */
+======================================== */
 
 .content-box {
   padding: 40px;
@@ -332,6 +351,7 @@ nav a:hover {
   color: var(--pink);
 
   font-size: 13px;
+
   letter-spacing: 0.08em;
 }
 
@@ -341,13 +361,16 @@ nav a:hover {
   font-size: 13px;
 }
 
-/* --------------------
+
+/* ========================================
    CHARACTER
--------------------- */
+======================================== */
 
 .character-grid {
   display: grid;
+
   grid-template-columns: repeat(2, 1fr);
+
   gap: 20px;
 }
 
@@ -378,6 +401,7 @@ nav a:hover {
   color: var(--muted);
 
   font-size: 11px;
+
   letter-spacing: 0.1em;
 }
 
@@ -385,7 +409,9 @@ nav a:hover {
   margin-top: 30px;
 
   display: grid;
+
   grid-template-columns: 80px 1fr;
+
   gap: 8px;
 
   font-size: 12px;
@@ -393,6 +419,7 @@ nav a:hover {
 
 .character-info span:nth-child(odd) {
   color: var(--pink);
+
   font-weight: 700;
 }
 
@@ -400,19 +427,23 @@ nav a:hover {
   color: #aaa2ad;
 }
 
-/* --------------------
+
+/* ========================================
    LOG
--------------------- */
+======================================== */
 
 .log-list {
   display: flex;
   flex-direction: column;
+
   gap: 12px;
 }
 
 .log-item {
   display: grid;
+
   grid-template-columns: 100px 1fr auto;
+
   align-items: center;
 
   padding: 22px 25px;
@@ -420,9 +451,11 @@ nav a:hover {
   background: var(--card);
 
   border: 1px solid rgba(255,255,255,0.07);
+
   border-radius: 8px;
 
   color: white;
+
   text-decoration: none;
 
   transition: 0.3s;
@@ -449,9 +482,10 @@ nav a:hover {
   color: var(--muted);
 }
 
-/* --------------------
+
+/* ========================================
    FOOTER
--------------------- */
+======================================== */
 
 footer {
   width: min(1100px, calc(100% - 80px));
@@ -467,12 +501,244 @@ footer {
   color: #55505a;
 
   font-size: 9px;
+
   letter-spacing: 0.12em;
 }
 
-/* --------------------
+
+/* ========================================
+   Mouse Star Particles
+   드문드문 떨어지는 별가루
+======================================== */
+
+.star-particle {
+  position: fixed;
+
+  z-index: 9999;
+
+  pointer-events: none;
+
+  border-radius: 50%;
+
+  box-shadow:
+    0 0 4px currentColor,
+    0 0 8px currentColor;
+
+  animation:
+    star-fall 1.4s ease-out forwards;
+}
+
+@keyframes star-fall {
+
+  0% {
+    opacity: 0.9;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1);
+  }
+
+  35% {
+    opacity: 0.75;
+  }
+
+  100% {
+    opacity: 0;
+
+    transform:
+      translate(var(--fall-x), var(--fall-y))
+      scale(0.15);
+  }
+}
+
+
+/* ========================================
+   Floating Nyael Character
+======================================== */
+
+.floating-character {
+  position: fixed;
+
+  right: 22px;
+  bottom: 18px;
+
+  width: 190px;
+
+  z-index: 9998;
+
+  pointer-events: none;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/* 말풍선 */
+
+.floating-message {
+  position: relative;
+
+  width: 175px;
+
+  padding: 10px 13px;
+
+  margin-bottom: 8px;
+
+  background: #ffffff;
+
+  color: #55515d;
+
+  border-radius: 14px;
+
+  font-size: 10px;
+
+  line-height: 1.5;
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,0.4);
+}
+
+.floating-message::after {
+  content: "";
+
+  position: absolute;
+
+  right: 22px;
+  bottom: -9px;
+
+  width: 0;
+  height: 0;
+
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+
+  border-top: 10px solid #ffffff;
+}
+
+.floating-message b {
+  color: var(--pink);
+}
+
+.floating-message strong {
+  color: var(--purple);
+}
+
+
+/* 캐릭터 */
+
+.floating-characters {
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: center;
+
+  gap: 0;
+}
+
+.floating-characters img {
+  display: block;
+
+  width: 88px;
+  height: 88px;
+
+  object-fit: contain;
+
+  filter:
+    drop-shadow(0 6px 8px rgba(0,0,0,0.45));
+
+  animation:
+    character-bob 3.5s ease-in-out infinite;
+}
+
+.floating-characters img:nth-child(2) {
+  animation-delay: -1.75s;
+}
+
+@keyframes character-bob {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+
+/* ========================================
+   BGM
+======================================== */
+
+#bgm-player {
+  position: fixed;
+
+  width: 1px;
+  height: 1px;
+
+  left: -10px;
+  top: -10px;
+
+  opacity: 0;
+
+  pointer-events: none;
+}
+
+#bgm-control {
+  position: fixed;
+
+  right: 20px;
+  bottom: 20px;
+
+  z-index: 10000;
+
+  padding: 7px 12px;
+
+  border: 1px solid rgba(235,0,189,0.4);
+
+  border-radius: 20px;
+
+  background: rgba(12,9,18,0.85);
+
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 10px;
+
+  letter-spacing: 0.08em;
+
+  cursor: pointer;
+
+  backdrop-filter: blur(8px);
+
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+#bgm-control:hover,
+#bgm-control.playing {
+  color: var(--pink);
+
+  border-color: var(--pink);
+
+  box-shadow:
+    0 0 12px rgba(235,0,189,0.25);
+}
+
+#bgm-control span {
+  margin-left: 4px;
+}
+
+
+/* ========================================
    MOBILE
--------------------- */
+======================================== */
 
 @media (max-width: 700px) {
 
@@ -522,252 +788,31 @@ footer {
     display: none;
   }
 
-  footer {
-    flex-direction: column;
-    gap: 5px;
-  }
-}
-/* ========================================
-   Mouse Sparkles
-======================================== */
 
-.mouse-sparkle {
-  position: fixed;
-  z-index: 9999;
-  pointer-events: none;
-/* ========================================
-   Mouse Star Particles
-   ======================================== */
+  /* floating */
 
-.star-particle {
-  position: fixed;
-  z-index: 9999;
-  pointer-events: none;
-
-  border-radius: 50%;
-
-  box-shadow:
-    0 0 5px currentColor,
-    0 0 10px currentColor;
-
-  animation: star-fall 1.2s ease-out forwards;
-}
-
-@keyframes star-fall {
-  0% {
-    opacity: 0.9;
-    transform: translate(-50%, -50%) scale(1);
-  }
-
-  25% {
-    opacity: 0.8;
-  }
-
-  100% {
-    opacity: 0;
-    transform:
-      translate(var(--fall-x), var(--fall-y))
-      scale(0.2);
-  }
-}
-
-
-/* ========================================
-   Floating Nyael Character
-   ======================================== */
-
-.floating-character {
-  position: fixed;
-  right: 25px;
-  bottom: 20px;
-
-  z-index: 9998;
-
-  width: 250px;
-
-  pointer-events: none;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-
-/* 말풍선 */
-
-.floating-message {
-  position: relative;
-
-  width: 220px;
-
-  padding: 12px 15px;
-  margin-bottom: 10px;
-
-  background: #ffffff;
-  color: #55515d;
-
-  border-radius: 16px;
-
-  font-size: 12px;
-  line-height: 1.55;
-
-  box-shadow:
-    0 8px 30px rgba(0, 0, 0, 0.4);
-}
-
-.floating-message::after {
-  content: "";
-
-  position: absolute;
-
-  right: 25px;
-  bottom: -10px;
-
-  width: 0;
-  height: 0;
-
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-top: 11px solid #ffffff;
-}
-
-.floating-message b {
-  color: #EB00BD;
-}
-
-.floating-message strong {
-  color: #8B00FF;
-}
-
-
-/* 두 캐릭터 */
-
-.floating-characters {
-  display: flex;
-
-  align-items: flex-end;
-  justify-content: center;
-
-  gap: 0;
-}
-
-.floating-characters img {
-  display: block;
-
-  width: 112px;
-  height: 112px;
-
-  object-fit: contain;
-
-  filter:
-    drop-shadow(0 7px 10px rgba(0, 0, 0, 0.45));
-
-  animation: character-bob 3s ease-in-out infinite;
-}
-
-.floating-characters img:nth-child(2) {
-  animation-delay: -1.5s;
-}
-
-@keyframes character-bob {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-5px);
-  }
-}
-
-
-/* ========================================
-   Mobile
-   ======================================== */
-
-@media (max-width: 700px) {
   .floating-character {
     right: 8px;
     bottom: 8px;
-    width: 170px;
+
+    width: 145px;
   }
 
   .floating-message {
-    width: 155px;
-    padding: 9px 10px;
-    font-size: 10px;
+    width: 135px;
+
+    padding: 8px 9px;
+
+    font-size: 9px;
   }
 
   .floating-characters img {
-    width: 75px;
-    height: 75px;
+    width: 67px;
+    height: 67px;
   }
-}
-/* ========================================
-   BGM Control
-   ======================================== */
-
-#bgm-player {
-  position: fixed;
-  width: 1px;
-  height: 1px;
-
-  left: -10px;
-  top: -10px;
-
-  opacity: 0;
-  pointer-events: none;
-}
-
-#bgm-control {
-  position: fixed;
-
-  right: 20px;
-  bottom: 20px;
-
-  z-index: 10000;
-
-  padding: 8px 13px;
-
-  border: 1px solid rgba(235, 0, 189, 0.45);
-  border-radius: 20px;
-
-  background: rgba(12, 9, 18, 0.85);
-
-  color: #ffffff;
-
-  font-family: inherit;
-  font-size: 11px;
-  letter-spacing: 0.08em;
-
-  cursor: pointer;
-
-  backdrop-filter: blur(8px);
-
-  transition:
-    border-color 0.2s ease,
-    color 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-#bgm-control:hover,
-#bgm-control.playing {
-  color: #EB00BD;
-
-  border-color: #EB00BD;
-
-  box-shadow:
-    0 0 12px rgba(235, 0, 189, 0.25);
-}
-
-#bgm-control span {
-  margin-left: 4px;
-}
 
 
-/* 모바일 */
-
-@media (max-width: 700px) {
+  /* BGM */
 
   #bgm-control {
     right: 10px;
@@ -775,7 +820,6 @@ footer {
 
     padding: 7px 10px;
 
-    font-size: 10px;
+    font-size: 9px;
   }
-
 }
