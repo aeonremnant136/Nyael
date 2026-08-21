@@ -527,3 +527,190 @@ footer {
     gap: 5px;
   }
 }
+/* ========================================
+   Mouse Sparkles
+======================================== */
+
+.mouse-sparkle {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+
+  background: var(--sparkle-color);
+  border-radius: 50%;
+
+  box-shadow:
+    0 0 6px var(--sparkle-color),
+    0 0 12px var(--sparkle-color);
+
+  transform: translate(-50%, -50%);
+  animation: sparkle-fade 0.7s ease-out forwards;
+}
+
+@keyframes sparkle-fade {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  60% {
+    opacity: 0.8;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -75%) scale(0);
+  }
+}
+
+
+/* ========================================
+   Floating Nyael Widget
+======================================== */
+
+.nyael-widget {
+  position: fixed;
+  right: 28px;
+  bottom: 24px;
+
+  width: 250px;
+
+  z-index: 5000;
+
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.nyael-widget.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+}
+
+
+/* speech bubble */
+
+.widget-bubble {
+  position: relative;
+
+  margin-bottom: -4px;
+  padding: 14px 16px;
+
+  background: #ffffff;
+  color: #1a111c;
+
+  border-radius: 17px;
+
+  font-size: 12px;
+  line-height: 1.55;
+
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+.widget-bubble::after {
+  content: "";
+
+  position: absolute;
+
+  right: 25px;
+  bottom: -11px;
+
+  width: 0;
+  height: 0;
+
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 13px solid #ffffff;
+}
+
+.widget-bubble .widget-title {
+  color: #8B00FF;
+  font-weight: 700;
+}
+
+.widget-bubble .widget-noel {
+  color: #EB00BD;
+  font-weight: 700;
+}
+
+.widget-bubble .widget-nyaryu {
+  color: #8B00FF;
+  font-weight: 700;
+}
+
+
+/* characters */
+
+.widget-characters {
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 5px;
+
+  padding-right: 4px;
+}
+
+.widget-character {
+  width: 94px;
+  height: 94px;
+
+  overflow: hidden;
+
+  border-radius: 50%;
+
+  border: 2px solid rgba(235, 0, 189, 0.25);
+
+  background:
+    radial-gradient(
+      circle at 50% 30%,
+      #5b5261 0%,
+      #29242d 45%,
+      #111014 100%
+    );
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.45);
+}
+
+.widget-character img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+
+/* close button */
+
+.widget-close {
+  position: absolute;
+
+  top: 78px;
+  left: -8px;
+
+  width: 22px;
+  height: 22px;
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+
+  background: #17141b;
+  color: #aaa;
+
+  font-size: 12px;
+
+  cursor: pointer;
+
+  z-index: 2;
+}
+
+.widget-close:hover {
+  color: #ffffff;
+
+  border-color: #EB00BD;
+}
