@@ -8,7 +8,7 @@ floating.className = "floating-character";
 
 floating.innerHTML = `
     <div class="floating-message">
-        <strong>💗 💜 · 50일까지 41일</strong>
+<strong>💗 💜 · <span id="dday">D-?</span></strong>
         <br>
         <b>Noel</b> 용서해. 너 또한 그랬잖아.
         <br>
@@ -53,3 +53,44 @@ document.addEventListener("mousemove", (e) => {
         particle.remove();
     }, 900);
 });
+
+// ========================================
+// D-day
+// ========================================
+
+const targetDate = new Date("2026-10-02T00:00:00");
+
+function updateDday() {
+    const now = new Date();
+
+    // 날짜만 비교
+    const today = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate()
+    );
+
+    const target = new Date(
+        targetDate.getFullYear(),
+        targetDate.getMonth(),
+        targetDate.getDate()
+    );
+
+    const diff = Math.ceil(
+        (target - today) / (1000 * 60 * 60 * 24)
+    );
+
+    const dday = document.getElementById("dday");
+
+    if (!dday) return;
+
+    if (diff > 0) {
+        dday.textContent = `D-${diff}`;
+    } else if (diff === 0) {
+        dday.textContent = "D-DAY";
+    } else {
+        dday.textContent = `D+${Math.abs(diff)}`;
+    }
+}
+
+updateDday();
